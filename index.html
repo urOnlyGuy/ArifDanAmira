@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Jemputan Walimatulurus Arif & Amira | 11 Nov 2026</title>
+  <title>Jemputan Walimatulurus - Arif & Amira | 11 Nov 2026</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -37,6 +38,7 @@
           boxShadow: {
             'glow': '0 0 20px rgba(197, 160, 89, 0.4)',
             'floating': '0 8px 30px rgba(0, 0, 0, 0.4)',
+            'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
           }
         }
       }
@@ -67,6 +69,14 @@
     .modal-backdrop {
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
     /* Bubbly Gradient Background Animations */
@@ -101,7 +111,7 @@
     .bubble {
       position: absolute;
       border-radius: 50%;
-      filter: blur(40px);
+      filter: blur(50px);
       z-index: 0;
     }
     .bubble-1 {
@@ -124,77 +134,65 @@
     }
   </style>
 </head>
+
 <body class="font-sans antialiased min-h-screen relative flex justify-center selection:bg-gold-300 selection:text-burgundy-deep animated-bg">
 
+  <!-- Background Bubbles -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden">
     <div class="bubble bubble-1"></div>
     <div class="bubble bubble-2"></div>
     <div class="bubble bubble-3"></div>
   </div>
 
-  <main class="w-full max-w-md min-h-screen px-6 py-14 relative z-10 flex flex-col items-center">
+  <main class="w-full max-w-md min-h-screen px-6 py-16 relative z-10 flex flex-col items-center">
 
-    <header class="text-center w-full flex flex-col items-center mb-10">
+    <header class="text-center w-full flex flex-col items-center mb-12">
       <div class="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-gold-dark via-gold to-gold-100 shadow-glow mb-6">
         <img 
           src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" 
           alt="Wedding Rings" 
-          onerror="this.src='https://placehold.co/400x400/4A1D23/F9F5F4?text=S+%26+A'"
+          onerror="this.src='https://placehold.co/400x400/4A1D23/F9F5F4?text=A+%26+H'"
           class="w-full h-full object-cover rounded-full border-2 border-burgundy-deep"
         />
       </div>
 
-      <h1 class="font-serif text-4xl sm:text-5xl font-normal text-ivory tracking-tight leading-none mb-4 drop-shadow-md">
+      <h1 class="font-sans text-sm tracking-[0.3em] uppercase text-gold-300 mb-4 opacity-90">
         Jemputan Walimatulurus
       </h1>
-      <p class="font-serif text-2xl font-medium gold-gradient-text mb-8 tracking-wide">11 November 2026</p>
-
-      <!-- Countdown Wrapper (Title Removed) -->
-      <div class="w-full bg-burgundy-deep/40 backdrop-blur-md border border-gold/20 rounded-2xl p-5 shadow-lg">
-        <div class="grid grid-cols-4 gap-3 text-center">
-          <div class="flex flex-col">
-            <span id="cd-days" class="font-serif text-3xl font-semibold text-ivory leading-none">00</span>
-            <span class="text-[9px] uppercase tracking-wider text-gold-100/70 mt-1.5 font-sans">Days</span>
-          </div>
-          <div class="flex flex-col border-l border-gold/20">
-            <span id="cd-hours" class="font-serif text-3xl font-semibold text-ivory leading-none">00</span>
-            <span class="text-[9px] uppercase tracking-wider text-gold-100/70 mt-1.5 font-sans">Hours</span>
-          </div>
-          <div class="flex flex-col border-l border-gold/20">
-            <span id="cd-minutes" class="font-serif text-3xl font-semibold text-ivory leading-none">00</span>
-            <span class="text-[9px] uppercase tracking-wider text-gold-100/70 mt-1.5 font-sans">Mins</span>
-          </div>
-          <div class="flex flex-col border-l border-gold/20">
-            <span id="cd-seconds" class="font-serif text-3xl font-semibold text-gold leading-none">00</span>
-            <span class="text-[9px] uppercase tracking-wider text-gold-100/70 mt-1.5 font-sans">Secs</span>
-          </div>
-        </div>
+      
+      <h2 class="font-serif italic text-5xl sm:text-7xl font-medium text-ivory tracking-tight leading-none mb-6 drop-shadow-md">
+        Arif & Amira
+      </h2>
+      
+      <div class="flex items-center gap-4 text-ivory/80 mb-2">
+        <div class="h-[1px] w-12 bg-gold/50"></div>
+        <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">11 November 2026</p>
+        <div class="h-[1px] w-12 bg-gold/50"></div>
       </div>
     </header>
 
-    <div class="w-full space-y-5 mb-24">
+    <div class="w-full space-y-4 mb-24">
       <!-- RSVP Button -->
-      <button onclick="openModal('rsvpModal')" class="btn-press w-full bg-ivory text-burgundy-deep rounded-2xl p-4 shadow-lg overflow-hidden group border border-ivory relative">
-        <div class="absolute inset-0 bg-gold-100/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-        <div class="relative flex items-center justify-center w-full z-10">
-          <i class="fa-regular fa-envelope-open absolute left-2 text-xl text-burgundy"></i>
-          <span class="font-serif text-lg font-bold tracking-wider uppercase">RSVP</span>
+      <button onclick="openModal('rsvpModal')" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
+        <div class="flex items-center justify-center w-full">
+          <i class="fa-regular fa-envelope-open text-xl text-gold-300 mr-3"></i>
+          <span class="font-serif text-xl font-medium tracking-wide">RSVP</span>
         </div>
       </button>
 
       <!-- Google Maps Button -->
-      <a href="https://maps.google.com/?q=Kuala+Lumpur" target="_blank" rel="noopener noreferrer" class="btn-press w-full bg-burgundy/30 backdrop-blur-sm border border-gold/50 text-ivory rounded-2xl p-4 shadow-sm hover:bg-burgundy hover:border-gold group relative block">
-        <div class="relative flex items-center justify-center w-full z-10">
-          <i class="fa-solid fa-location-dot absolute left-2 text-xl text-gold-300"></i>
-          <span class="font-serif text-lg font-medium tracking-wide">Google Maps</span>
+      <a href="https://maps.app.goo.gl/GEobsXizDVLT4Siw7" target="_blank" rel="noopener noreferrer" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
+        <div class="flex items-center justify-center w-full">
+          <i class="fa-solid fa-location-dot text-xl text-gold-300 mr-3"></i>
+          <span class="font-serif text-xl font-medium tracking-wide">Google Maps</span>
         </div>
       </a>
 
       <!-- Waze Button -->
-      <a href="https://waze.com/ul?q=Kuala+Lumpur" target="_blank" rel="noopener noreferrer" class="btn-press w-full bg-burgundy/30 backdrop-blur-sm border border-gold/50 text-ivory rounded-2xl p-4 shadow-sm hover:bg-burgundy hover:border-gold group relative block">
-        <div class="relative flex items-center justify-center w-full z-10">
-          <i class="fa-brands fa-waze absolute left-2 text-xl text-gold-300"></i>
-          <span class="font-serif text-lg font-medium tracking-wide">Waze</span>
+      <a href="https://waze.com/ul/hw1p6unq3p" target="_blank" rel="noopener noreferrer" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
+        <div class="flex items-center justify-center w-full">
+          <i class="fa-brands fa-waze text-xl text-gold-300 mr-3"></i>
+          <span class="font-serif text-xl font-medium tracking-wide">Waze</span>
         </div>
       </a>
     </div>
@@ -202,7 +200,7 @@
   </main>
 
   <!-- Bottom Left: Floating Music Toggle -->
-  <button id="musicToggleBtn" onclick="toggleAudio()" class="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-burgundy-light border border-gold/40 shadow-floating flex items-center justify-center text-ivory transition-transform hover:scale-105 active:scale-95 group">
+  <button id="musicToggleBtn" onclick="toggleAudio()" class="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-burgundy/80 backdrop-blur-md border border-gold/40 shadow-floating flex items-center justify-center text-ivory transition-transform hover:scale-105 active:scale-95 group">
     <i id="musicIcon" class="fa-solid fa-music text-xl"></i>
   </button>
 
@@ -215,20 +213,20 @@
     
     <!-- Expandable WhatsApp Links -->
     <div id="waMenu" class="flex flex-col items-end gap-3 transition-all duration-300 opacity-0 translate-y-8 pointer-events-none relative z-40">
-      <a href="https://wa.me/0000000000" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
-        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Father</span>
+      <a href="https://wa.me/60136788851" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
+        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Hajah Rohaiza</span>
         <div class="w-11 h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
           <i class="fa-brands fa-whatsapp text-xl"></i>
         </div>
       </a>
-      <a href="https://wa.me/0000000000" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
-        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Mother</span>
+      <a href="https://wa.me/60123425248" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
+        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Haji Saidinar</span>
         <div class="w-11 h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
           <i class="fa-brands fa-whatsapp text-xl"></i>
         </div>
       </a>
-      <a href="https://wa.me/0000000000" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
-        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Brother</span>
+      <a href="https://wa.me/60183228055" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 hover:-translate-x-1 transition-transform group">
+        <span class="bg-ivory text-burgundy-deep px-3 py-1.5 rounded-lg text-sm font-serif font-bold shadow-md">Emir</span>
         <div class="w-11 h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
           <i class="fa-brands fa-whatsapp text-xl"></i>
         </div>
@@ -297,41 +295,13 @@
   </div>
 
   <script>
-    /* 1. Countdown Logic */
-    const weddingDate = new Date('2026-11-11T00:00:00').getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) {
-        document.getElementById('cd-days').innerText = "00";
-        document.getElementById('cd-hours').innerText = "00";
-        document.getElementById('cd-minutes').innerText = "00";
-        document.getElementById('cd-seconds').innerText = "00";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
-      document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
-      document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    /* 2. Web Audio API Synth */
+    /* Web Audio API Synth (Romantic Arpeggio) */
     let audioCtx = null;
     let isPlaying = false;
     let audioTimer = null;
     let melodyIndex = 0;
 
-    // Romantic arpeggio sequence
+    // Romantic arpeggio sequence notes
     const notes = [
       329.63, 392.00, 493.88, 587.33, 
       349.23, 440.00, 523.25, 659.25,
@@ -385,11 +355,11 @@
         isPlaying = false;
         musicIcon.className = "fa-solid fa-music";
         musicBtn.classList.remove('bg-gold');
-        musicBtn.classList.add('bg-burgundy-light');
+        musicBtn.classList.add('bg-burgundy/80');
       } else {
         isPlaying = true;
         musicIcon.className = "fa-solid fa-compact-disc animate-spin";
-        musicBtn.classList.remove('bg-burgundy-light');
+        musicBtn.classList.remove('bg-burgundy/80');
         musicBtn.classList.add('bg-gold');
 
         audioTimer = setInterval(() => {
@@ -399,7 +369,7 @@
       }
     }
 
-    /* 3. Modal & Toast Logic */
+    /* Modal & Toast Logic */
     function openModal(id) {
       const modal = document.getElementById(id);
       if (modal) {
@@ -435,7 +405,7 @@
       
       let msg = '';
       if(attendance === 'Accepts') {
-          msg = `RSVP saved! Looking forward to seeing ${guestName} (${count} guest${count > 1 ? 's' : ''}).`;
+          msg = `RSVP saved! Looking forward to seeing ${guestName}.`;
       } else {
           msg = `Thank you for letting us know, ${guestName.split(' ')[0]}. You will be missed!`;
       }
@@ -458,7 +428,7 @@
       }, 4000);
     }
 
-    /* 4. WhatsApp FAB Toggle */
+    /* WhatsApp FAB Toggle */
     let isWaMenuOpen = false;
     function toggleWaMenu() {
       isWaMenuOpen = !isWaMenuOpen;
