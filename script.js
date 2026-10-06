@@ -3,14 +3,13 @@ const floatingWhatsapp = document.getElementById('floating-whatsapp');
 
 if (whatsappToggle && floatingWhatsapp) {
   whatsappToggle.addEventListener('click', () => {
-    const isOpen = floatingWhatsapp.classList.toggle('open');
-    whatsappToggle.setAttribute('aria-expanded', String(isOpen));
+    floatingWhatsapp.classList.toggle('open');
   });
 
   document.addEventListener('click', (event) => {
-    if (!floatingWhatsapp.contains(event.target)) {
+    const clickedInside = floatingWhatsapp.contains(event.target);
+    if (!clickedInside) {
       floatingWhatsapp.classList.remove('open');
-      whatsappToggle.setAttribute('aria-expanded', 'false');
     }
   });
 }
