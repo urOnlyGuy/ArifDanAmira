@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Jemputan Walimatulurus - Arif & Amira | 7 Nov 2026</title>
   
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -163,9 +164,7 @@
       <h2 class="font-serif italic text-5xl sm:text-7xl font-medium text-ivory tracking-tight leading-none mb-6 drop-shadow-md">
         Arif & Amira
       </h2>
-      
-    </header>
-	
+
 	  <div class="flex items-center gap-4 text-ivory/80 mb-2">
         <div class="h-[1px] w-12 bg-gold/50"></div>
         <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">7 November 2026</p>
@@ -192,6 +191,8 @@
         </div>
       </div>
     </div>
+      
+    </header>
 
     <div class="text-center px-4 mb-10 text-ivory/90 font-sans font-light leading-relaxed">
       <p class="text-sm sm:text-base opacity-90">
@@ -201,12 +202,12 @@
 
     <div class="w-full space-y-4 mb-24">
       <!-- RSVP Button -->
-      <button onclick="openModal('rsvpModal')" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
+      <a href="https://calendar.app.google/vxDYhifkH1zi3gsY8" target="_blank" rel="noopener noreferrer" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
         <div class="flex items-center justify-center w-full">
           <i class="fa-regular fa-envelope-open text-xl text-gold-300 mr-3"></i>
           <span class="font-serif text-xl font-medium tracking-wide">RSVP</span>
         </div>
-      </button>
+      </a>
 
       <!-- Google Maps Button -->
       <a href="https://maps.app.goo.gl/GEobsXizDVLT4Siw7" target="_blank" rel="noopener noreferrer" class="btn-press w-full glass-panel text-ivory rounded-2xl p-5 hover:bg-white/10 group relative block">
@@ -322,7 +323,7 @@
     </div>
   </div>
 
-  <audio id="bgMusic" loop src="Melodi_Pengantin-SelamatPengantinBaru.mp3" preload="auto"></audio>
+  <audio id="bgMusic" autoplay loop src="Melodi_Pengantin-SelamatPengantinBaru.mp3" preload="auto"></audio>
   
   <script>
 
@@ -363,6 +364,8 @@
     function toggleAudio() {
       const musicIcon = document.getElementById('musicIcon');
       const musicBtn = document.getElementById('musicToggleBtn');
+	  
+	  bgMusic.volume = 0.7;
 
       // Check if a music file has been linked yet
       if (!bgMusic.getAttribute('src') || bgMusic.getAttribute('src') === '') {
