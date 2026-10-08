@@ -163,8 +163,16 @@
       <h2 class="font-serif italic text-5xl sm:text-7xl font-medium text-ivory tracking-tight leading-none mb-6 drop-shadow-md">
         Arif & Amira
       </h2>
-
-          <div class="w-full glass-panel rounded-2xl p-5 mb-12 shadow-md border-t border-l border-white/10">
+      
+    </header>
+	
+	  <div class="flex items-center gap-4 text-ivory/80 mb-2">
+        <div class="h-[1px] w-12 bg-gold/50"></div>
+        <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">7 November 2026</p>
+        <div class="h-[1px] w-12 bg-gold/50"></div>
+      </div>
+	  
+	  <div class="w-full glass-panel rounded-2xl p-5 mb-12 shadow-md border-t border-l border-white/10">
       <div class="grid grid-cols-4 gap-2 text-center text-ivory">
         <div class="flex flex-col items-center justify-center">
           <span id="cd-days" class="font-serif text-3xl sm:text-4xl font-medium gold-gradient-text drop-shadow-sm">00</span>
@@ -184,13 +192,6 @@
         </div>
       </div>
     </div>
-      
-      <div class="flex items-center gap-4 text-ivory/80 mb-2">
-        <div class="h-[1px] w-12 bg-gold/50"></div>
-        <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">7 November 2026</p>
-        <div class="h-[1px] w-12 bg-gold/50"></div>
-      </div>
-    </header>
 
     <div class="text-center px-4 mb-10 text-ivory/90 font-sans font-light leading-relaxed">
       <p class="text-sm sm:text-base opacity-90">
@@ -326,7 +327,7 @@
   <script>
 
         /* Countdown Timer Logic */
-    const weddingDate = new Date('2026-11-11T00:00:00').getTime();
+    const weddingDate = new Date('2026-11-07T11:00:00').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -357,23 +358,55 @@
 
     const bgMusic = document.getElementById('bgMusic');
     let isPlaying = false;
+	let fadeInterval;
 
     function toggleAudio() {
       const musicIcon = document.getElementById('musicIcon');
       const musicBtn = document.getElementById('musicToggleBtn');
 
+      // Check if a music file has been linked yet
+      if (!bgMusic.getAttribute('src') || bgMusic.getAttribute('src') === '') {
+        showToast("Demo mode: Please add your MP3 file to the code to play music.");
+        return;
+      }
+
+      // Stop any current fade transitions if the user clicks quickly
+      clearInterval(fadeInterval);
       if (isPlaying) {
         bgMusic.pause();
         isPlaying = false;
         musicIcon.className = "fa-solid fa-music text-xl";
         musicBtn.classList.remove('bg-gold');
         musicBtn.classList.add('bg-burgundy/80');
+
+		fadeInterval = setInterval(() => {
+          if (bgMusic.volume > 0.05) {
+            bgMusic.volume -= 0.05; // Decrease volume by 5% every 50ms
+          } else {
+            bgMusic.volume = 0;
+            bgMusic.pause(); // Actually pause the file once it's silent
+            clearInterval(fadeInterval);
+          }
+        }, 50); // Total fade time: ~1 second
+
       } else {
+		// FADE IN LOGIC
+        bgMusic.volume = 0; // Ensure volume starts at absolutely zero
         bgMusic.play().then(() => {
           isPlaying = true;
           musicIcon.className = "fa-solid fa-compact-disc text-xl animate-spin";
           musicBtn.classList.remove('bg-burgundy/80');
           musicBtn.classList.add('bg-gold');
+		  
+		  fadeInterval = setInterval(() => {
+            if (bgMusic.volume < 0.8) {
+              bgMusic.volume += 0.05; // Increase volume by 5% every 50ms
+            } else {
+              bgMusic.volume = 0.85; // Cap at 100%
+              clearInterval(fadeInterval);
+            }
+          }, 50); // Total fade time: ~1 second
+          
         }).catch(error => {
           console.error("Audio playback failed:", error);
           showToast("Please tap anywhere on the page first before playing music.");
