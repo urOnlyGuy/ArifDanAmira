@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Jemputan Walimatulurus - Arif & Amira | 11 Nov 2026</title>
+  <title>Jemputan Walimatulurus - Arif & Amira | 7 Nov 2026</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,13 +163,40 @@
       <h2 class="font-serif italic text-5xl sm:text-7xl font-medium text-ivory tracking-tight leading-none mb-6 drop-shadow-md">
         Arif & Amira
       </h2>
+
+          <div class="w-full glass-panel rounded-2xl p-5 mb-12 shadow-md border-t border-l border-white/10">
+      <div class="grid grid-cols-4 gap-2 text-center text-ivory">
+        <div class="flex flex-col items-center justify-center">
+          <span id="cd-days" class="font-serif text-3xl sm:text-4xl font-medium gold-gradient-text drop-shadow-sm">00</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] mt-1 opacity-70 font-semibold">Days</span>
+        </div>
+        <div class="flex flex-col items-center justify-center border-l border-white/10">
+          <span id="cd-hours" class="font-serif text-3xl sm:text-4xl font-medium gold-gradient-text drop-shadow-sm">00</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] mt-1 opacity-70 font-semibold">Hours</span>
+        </div>
+        <div class="flex flex-col items-center justify-center border-l border-white/10">
+          <span id="cd-minutes" class="font-serif text-3xl sm:text-4xl font-medium gold-gradient-text drop-shadow-sm">00</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] mt-1 opacity-70 font-semibold">Mins</span>
+        </div>
+        <div class="flex flex-col items-center justify-center border-l border-white/10">
+          <span id="cd-seconds" class="font-serif text-3xl sm:text-4xl font-medium text-ivory drop-shadow-sm">00</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] mt-1 opacity-70 font-semibold">Secs</span>
+        </div>
+      </div>
+    </div>
       
       <div class="flex items-center gap-4 text-ivory/80 mb-2">
         <div class="h-[1px] w-12 bg-gold/50"></div>
-        <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">11 November 2026</p>
+        <p class="font-serif text-2xl font-medium gold-gradient-text tracking-wide">7 November 2026</p>
         <div class="h-[1px] w-12 bg-gold/50"></div>
       </div>
     </header>
+
+    <div class="text-center px-4 mb-10 text-ivory/90 font-sans font-light leading-relaxed">
+      <p class="text-sm sm:text-base opacity-90">
+        Dengan penuh rasa syukur ke hadrat Ilahi, kami berbesar hati menjemput keluarga dan sahabat handai untuk memeriahkan majlis kami.
+      </p>
+    </div>
 
     <div class="w-full space-y-4 mb-24">
       <!-- RSVP Button -->
@@ -294,78 +321,63 @@
     </div>
   </div>
 
+  <audio id="bgMusic" loop src="Melodi_Pengantin-SelamatPengantinBaru.mp3" preload="auto"></audio>
+  
   <script>
-    /* Web Audio API Synth (Romantic Arpeggio) */
-    let audioCtx = null;
-    let isPlaying = false;
-    let audioTimer = null;
-    let melodyIndex = 0;
 
-    // Romantic arpeggio sequence notes
-    const notes = [
-      329.63, 392.00, 493.88, 587.33, 
-      349.23, 440.00, 523.25, 659.25,
-      293.66, 349.23, 440.00, 587.33,
-      329.63, 493.88, 659.25, 783.99
-    ];
+        /* Countdown Timer Logic */
+    const weddingDate = new Date('2026-11-11T00:00:00').getTime();
 
-    function playNote(freq) {
-      if (!audioCtx) return;
-      try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        const filter = audioCtx.createBiquadFilter();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
-
-        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
-
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 2.0);
-      } catch (err) {
-        console.error("Audio error:", err);
+      if (distance < 0) {
+        document.getElementById('cd-days').innerText = "00";
+        document.getElementById('cd-hours').innerText = "00";
+        document.getElementById('cd-minutes').innerText = "00";
+        document.getElementById('cd-seconds').innerText = "00";
+        return;
       }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
     }
+    
+    // Initialize immediately, then run every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
 
     function toggleAudio() {
       const musicIcon = document.getElementById('musicIcon');
       const musicBtn = document.getElementById('musicToggleBtn');
 
-      if (!audioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContextClass();
-      }
-
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
       if (isPlaying) {
-        clearInterval(audioTimer);
+        bgMusic.pause();
         isPlaying = false;
-        musicIcon.className = "fa-solid fa-music";
+        musicIcon.className = "fa-solid fa-music text-xl";
         musicBtn.classList.remove('bg-gold');
         musicBtn.classList.add('bg-burgundy/80');
       } else {
-        isPlaying = true;
-        musicIcon.className = "fa-solid fa-compact-disc animate-spin";
-        musicBtn.classList.remove('bg-burgundy/80');
-        musicBtn.classList.add('bg-gold');
-
-        audioTimer = setInterval(() => {
-          playNote(notes[melodyIndex % notes.length]);
-          melodyIndex++;
-        }, 700);
+        bgMusic.play().then(() => {
+          isPlaying = true;
+          musicIcon.className = "fa-solid fa-compact-disc text-xl animate-spin";
+          musicBtn.classList.remove('bg-burgundy/80');
+          musicBtn.classList.add('bg-gold');
+        }).catch(error => {
+          console.error("Audio playback failed:", error);
+          showToast("Please tap anywhere on the page first before playing music.");
+        });
       }
     }
 
